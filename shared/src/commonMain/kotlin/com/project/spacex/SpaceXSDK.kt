@@ -19,4 +19,8 @@ class SpaceXSDK(databaseDriverFactory: DatabaseDriverFactory, val api: SpaceXApi
             }
         }
     }
+    @Throws(Exception::class)
+    suspend fun getLaunchById(flightNumber: Int): RocketLaunch? {
+        return database.getLaunchById(flightNumber.toLong())
+    }
 }

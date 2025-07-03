@@ -26,9 +26,24 @@ class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {
             }
         }
     }
-
+    fun getLaunchById(flightNumber: Int) {
+        viewModelScope.launch {
+            try {
+                val launch = sdk.getLaunchById(flightNumber)
+                _state.value = _state.value.copy(
+                    selectedLaunch = launch
+                )
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(
+                    selectedLaunch = null
+                )
+            }
+        }
+    }
 }
 
 data class RocketLaunchScreenState(
-    val isLoading: Boolean = false, val launches: List<RocketLaunch> = emptyList()
+    val isLoading: Boolean = false,
+    val launches: List<RocketLaunch> = emptyList(),
+    val selectedLaunch: RocketLaunch? = null
 )

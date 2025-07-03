@@ -1,5 +1,7 @@
 package com.project.spacex
 
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
@@ -25,6 +27,7 @@ import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.compose.AppTheme
 import com.example.compose.app_theme_successful
@@ -34,12 +37,16 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun App() {
+fun MainScreen(
+    modifier: Modifier,
+    onClick: (Int) -> Unit
+) {
     val viewModel = koinViewModel<RocketLaunchViewModel>()
     val state by remember { viewModel.state }
     val coroutineScope = rememberCoroutineScope()
     var isRefreshing by remember { mutableStateOf(false) }
     val pullToRefreshState = rememberPullToRefreshState()
+    val context = LocalContext.current
 
     AppTheme {
         Scaffold(
@@ -79,7 +86,24 @@ fun App() {
                 } else {
                     LazyColumn {
                         items(state.launches) { launch: RocketLaunch ->
-                            Column(modifier = Modifier.padding(16.dp)) {
+                            val details = launch.details
+                            Column(
+                                modifier = Modifier
+                                    .padding(16.dp)
+                                    .clickable {
+                                        if (details != null && details.isNotBlank()){
+                                            onClick(launch.flightNumber)
+                                        }
+                                        else{
+                                            Toast.makeText(
+                                                context,
+                                                "No details available for this launch",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+
+                            ) {
                                 Text(
                                     text = "${launch.missionName} - ${launch.launchYear}",
                                     style = MaterialTheme.typography.headlineSmall
@@ -90,10 +114,12 @@ fun App() {
                                     color = if (launch.launchSuccess == true) app_theme_successful else app_theme_unsuccessful
                                 )
                                 Spacer(Modifier.height(8.dp))
+                                /*
                                 val details = launch.details
                                 if (details != null && details.isNotBlank()) {
                                     Text(details)
                                 }
+                                */
                             }
                             HorizontalDivider()
                         }

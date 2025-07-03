@@ -24,3 +24,5 @@ selectAllLaunchesInfo:
 SELECT Launch.*
 FROM Launch;
 
+selectLaunchById:
+SELECT * FROM Launch WHERE flightNumber = ?;
