@@ -40,23 +40,6 @@
 - **Jetpack Navigation** – zarządzanie nawigacją  
 - **AndroidX Lifecycle** – ViewModel i coroutine
 
----
-
-## Struktura projektu
-hared/src/commonMain/
-├── RocketLaunch.kt # Modele danych (launch, links, patch)
-├── SpaceXSDK.kt # Obsługa API i bazy danych
-├── AppDatabase.sq # Schemat SQLDelight i zapytania
-
-android/src/main/
-├── MainScreen.kt # Ekran listy startów
-├── DetailScreen.kt # Ekran szczegółów (zdjęcia, linki)
-├── RocketLaunchViewModel.kt # Zarządzanie stanem UI i pobieraniem danych
-├── navigation/
-│ ├── ArgumentScreen.kt
-│ ├── addMainScreen.kt
-│ └── addDetailsScreen.kt
-
 
 
 
