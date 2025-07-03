@@ -1,4 +1,4 @@
-package com.project.spacex
+package com.project.spacex.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,6 +29,7 @@ import com.example.compose.app_theme_unsuccessful
 import org.koin.androidx.compose.koinViewModel
 import android.content.Intent
 import android.net.Uri
+import com.project.spacex.RocketLaunchViewModel
 
 @Composable
 fun DetailScreen(

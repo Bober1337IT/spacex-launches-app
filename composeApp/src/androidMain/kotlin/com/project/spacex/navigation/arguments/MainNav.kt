@@ -4,7 +4,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.project.spacex.MainScreen
+import com.project.spacex.screens.MainScreen
 import com.project.spacex.navigation.Navigation
 
 fun NavGraphBuilder.addMainScreen(

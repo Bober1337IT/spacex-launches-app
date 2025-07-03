@@ -6,7 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.project.spacex.DetailScreen
+import com.project.spacex.screens.DetailScreen
 import com.project.spacex.navigation.Navigation
 
 fun NavGraphBuilder.addDetailsScreen(
