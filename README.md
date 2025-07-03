@@ -1,17 +1,45 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# SpaceX Launches
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+**SpaceX Launches** to aplikacja na Androida wyświetlająca listę startów rakiet SpaceX. Pozwala użytkownikom przeglądać szczegóły dotyczące każdej misji, w tym jej status, obrazki i odnośniki do artykułów. Dane pobierane są z SpaceX API, cache'owane lokalnie przy użyciu SQLDelight i prezentowane w nowoczesnym interfejsie stworzonym z Jetpack Compose.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+---
 
-* `/shared` is for the code that will be shared between all targets in the project.
-  The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
+## Funkcje
+
+- **Lista startów**  
+  Wyświetla listę startów SpaceX z nazwą misji i statusem (sukces / porażka). Dane pobierane są z lokalnej bazy lub API.
+
+- **Szczegóły startu**  
+  Zawiera nazwę misji, datę startu, status, szczegóły, obrazki patchy (mały i duży) oraz odnośnik do artykułu.
+
+- **Obsługa offline**  
+  Dane są cache’owane lokalnie w bazie SQLDelight, co umożliwia ich przeglądanie bez połączenia z internetem.
+
+- **Ładowanie obrazów**  
+  Obrazy patchy misji ładowane i wyświetlane są za pomocą Coil. Duży patch wycentrowany na ekranie szczegółów.
+
+- **Linki do artykułów**  
+  Link do artykułu można otworzyć w zewnętrznej przeglądarce jednym tapnięciem.
+
+- **Nowoczesny UI**  
+  Interfejs użytkownika zbudowany z Jetpack Compose, zapewnia płynność i estetykę.
+
+- **Nawigacja**  
+  Nawigacja między ekranami listy i szczegółów zrealizowana z użyciem Jetpack Navigation.
+
+---
+
+## Technologie
+
+- **Kotlin** – główny język programowania  
+- **Jetpack Compose** – budowa interfejsu użytkownika  
+- **Koin** – wstrzykiwanie zależności  
+- **SQLDelight** – lokalna baza danych i cache  
+- **Ktor** – żądania HTTP do API SpaceX  
+- **Coil** – ładowanie obrazków z URL  
+- **Jetpack Navigation** – zarządzanie nawigacją  
+- **AndroidX Lifecycle** – ViewModel i coroutine
 
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+
